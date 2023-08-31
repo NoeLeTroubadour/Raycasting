@@ -14,7 +14,7 @@ varMap = map.miniMap()
 varPlayer = mainObjects.player()
 
 clock = pygame.time.Clock()
-"jaj"
+
 running = True
 
 while running:

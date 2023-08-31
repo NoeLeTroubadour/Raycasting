@@ -12,7 +12,7 @@ class player:
         self.height = 20
         self.playersMiddleX = self.XPos + self.width / 2
         self.playersMiddleY = self.YPos + self.height / 2
-        self.angle = math.pi    # Python uses radians instead of degrees (pi = 180°)
+        self.angle = 2 * math.pi    # Python uses radians instead of degrees (pi = 180°)
         self.renderDistance = 500
         self.FOV = math.pi / 3  # pi/3 = 60°
         self.halfFOV = self.FOV / 2
@@ -21,25 +21,31 @@ class player:
         self.resolutionStep = self.FOV / self.resolution
 
         self.playerObject = pygame.Rect(self.XPos, self.YPos, self.width, self.height)
- 
-    def movements(self, keyPressed):
-        keyPressed = pygame.key.get_pressed()
-            
-        # Forward
-        if keyPressed[pygame.K_UP]:
-            self.XPos
 
+    def rotate(self, keyPressed):
+        # Turning left
+        if keyPressed[pygame.K_LEFT]:
+            self.angle -= 0.1
+
+        # Turning right
+        if keyPressed[pygame.K_RIGHT]:
+            self.angle += 0.1
+
+        # Forward
+        if keyPressed[pygame.K_z]:
+            self.playersMiddleX += -math.sin(self.angle) * 5
+            self.playersMiddleY += math.cos(self.angle) * 5
+            self.XPos += -math.sin(self.angle) * 5
+            self.YPos += math.cos(self.angle) * 5
+            
         # Backward
+        if keyPressed[pygame.K_s]:
+            self.playersMiddleX -= -math.sin(self.angle) * 5
+            self.playersMiddleY -= math.cos(self.angle) * 5
 
         # Strafe right
 
         # Strafe left
-
-    def rotate(self, keyPressed):
-        if keyPressed[pygame.K_q]:
-            self.angle -= 0.1
-        if keyPressed[pygame.K_d]:
-            self.angle += 0.1
 
     def cast(self, screen):
         self.endFOV = self.angle - self.halfFOV
