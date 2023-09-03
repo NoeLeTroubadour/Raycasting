@@ -8,7 +8,7 @@
 - ```
   git clone https://github.com/NoeLeTroubadour/Raycasting.git
   ```
-- Open the ```main.py file```
+- Open the ```main.py``` file
 - ```
   cd raycasting
   python main.py
